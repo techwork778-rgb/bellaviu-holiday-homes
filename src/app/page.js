@@ -74,12 +74,7 @@ const Home = () => {
       </section>
 
       <section className="feature-room-section section">
-        <Container>
-          <div className="section-header">
-            <h2 className="section-title">Testimonials</h2>
-          </div>
-          <TestimonialSlider />
-        </Container>
+        <TestimonialSlider />
       </section>
 
       {/* UPDATED METRICS SECTION */}

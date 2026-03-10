@@ -1,5 +1,3 @@
-
-
 "use client";
 import React from "react";
 import {
@@ -21,6 +19,7 @@ import {
   ListItemText,
   useTheme,
   useMediaQuery,
+  alpha,
 } from "@mui/material";
 import {
   Timeline,
@@ -54,6 +53,12 @@ const Page = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between('md', 'lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // Brand Color Constants
+  const brandPrimary = "#9c6c69";
+  const brandDark = "#1e293b";
+  const brandLight = "#f8fafc";
+  const brandBorder = "#e2e8f0";
+
   const journeyMilestones = [
     {
       title: "Visit Our Website",
@@ -63,7 +68,7 @@ const Page = () => {
       location: "Online Platform",
       category: "Discovery",
       impact: "Find Your Perfect Match",
-      color: "#6366f1",
+      color: brandPrimary,
       icon: <Home />,
     },
     {
@@ -74,7 +79,7 @@ const Page = () => {
       location: "Search Portal",
       category: "Selection",
       impact: "Tailored Results",
-      color: "#3b82f6",
+      color: brandPrimary,
       icon: <Star />,
     },
     {
@@ -85,17 +90,17 @@ const Page = () => {
       location: "Booking System",
       category: "Planning",
       impact: "Secure Your Dates",
-      color: "#10b981",
+      color: brandPrimary,
       icon: <CheckCircle />,
     },
     {
       title: "Book Your Stay",
-      description:"Click Book Now and fill in your details. You'll need: Your name and contact info, Number of guests, Payment details. Don't worry—our booking system is safe and secure.",
+      description: "Click Book Now and fill in your details. You'll need: Your name and contact info, Number of guests, Payment details. Don't worry—our booking system is safe and secure.",
       date: "Step 4",
       location: "Payment Portal",
       category: "Booking",
       impact: "Confirmed Reservation",
-      color: "#f59e0b",
+      color: brandPrimary,
       icon: <Payment />,
     },
     {
@@ -106,7 +111,7 @@ const Page = () => {
       location: "Email & SMS",
       category: "Confirmation",
       impact: "All Set to Go",
-      color: "#8b5cf6",
+      color: brandPrimary,
       icon: <Email />,
     },
   ];
@@ -116,25 +121,25 @@ const Page = () => {
       title: "Stylish & Comfortable Homes",
       description:
         "Handpicked properties featuring premium amenities and sophisticated design",
-      icon: <Star sx={{ color: "#f59e0b" }} />,
+      icon: <Star sx={{ color: brandPrimary }} />,
     },
     {
       title: "Top Locations in Dubai",
       description:
         "Strategic locations near Dubai's business districts, shopping, and attractions",
-      icon: <LocationOn sx={{ color: "#ef4444" }} />,
+      icon: <LocationOn sx={{ color: brandPrimary }} />,
     },
     {
       title: "24/7 Guest Support",
       description:
         "Rigorous safety protocols and secure properties with 24/7 monitoring",
-      icon: <Shield sx={{ color: "#10b981" }} />,
+      icon: <Shield sx={{ color: brandPrimary }} />,
     },
     {
       title: "Clean & Safe",
       description:
         "Personal guest managers and round-the-clock concierge services",
-      icon: <Support sx={{ color: "#8b5cf6" }} />,
+      icon: <Support sx={{ color: brandPrimary }} />,
     },
   ];
 
@@ -158,7 +163,7 @@ const Page = () => {
                 gutterBottom
                 sx={{
                   fontWeight: 800,
-                  color: "#1e293b",
+                  color: brandDark,
                   mb: { xs: 2, md: 3 },
                   mt: { xs: 2, md: 5 },
                   fontSize: { 
@@ -230,7 +235,7 @@ const Page = () => {
                         variant="h4"
                         sx={{ 
                           fontWeight: 800, 
-                          color: "#1e293b", 
+                          color: brandDark, 
                           mb: 1,
                           fontSize: { xs: "1.2rem", sm: "1.5rem", md: "2rem" }
                         }}
@@ -257,7 +262,7 @@ const Page = () => {
                       >
                         <Avatar
                           sx={{
-                            backgroundColor: `${milestone.color}20`,
+                            backgroundColor: alpha(milestone.color, 0.1),
                             color: milestone.color,
                             width: { xs: 28, md: 32 },
                             height: { xs: 28, md: 32 },
@@ -290,7 +295,7 @@ const Page = () => {
                         width: { xs: 20, md: 24 },
                         height: { xs: 20, md: 24 },
                         border: "4px solid white",
-                        boxShadow: `0 0 0 4px ${milestone.color}30`,
+                        boxShadow: `0 0 0 4px ${alpha(milestone.color, 0.2)}`,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -310,9 +315,7 @@ const Page = () => {
                       <TimelineConnector
                         sx={{
                           height: { xs: 60, md: 80 },
-                          background: `linear-gradient(to bottom, ${
-                            milestone.color
-                          }40, ${journeyMilestones[index + 1].color}40)`,
+                          background: `linear-gradient(to bottom, ${alpha(milestone.color, 0.3)}, ${alpha(journeyMilestones[index + 1].color, 0.3)})`,
                         }}
                       />
                     )}
@@ -336,7 +339,7 @@ const Page = () => {
                           variant="h6"
                           sx={{ 
                             fontWeight: 800, 
-                            color: "#1e293b", 
+                            color: brandDark, 
                             mb: 0.5,
                             fontSize: "1.1rem"
                           }}
@@ -365,7 +368,7 @@ const Page = () => {
                           md: "0 12px 40px rgba(0,0,0,0.12)" 
                         },
                         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                        border: `2px solid ${milestone.color}20`,
+                        border: `2px solid ${alpha(milestone.color, 0.1)}`,
                         overflow: "hidden",
                         "&:hover": {
                           transform: { xs: "translateY(-4px)", md: "translateY(-12px)" },
@@ -385,7 +388,7 @@ const Page = () => {
                           sx={{
                             objectFit: "cover",
                             transition: "transform 0.4s ease",
-                            backgroundColor: `${milestone.color}10`,
+                            backgroundColor: alpha(milestone.color, 0.05),
                           }}
                         />
                         <Box
@@ -414,7 +417,7 @@ const Page = () => {
                           gutterBottom
                           sx={{
                             fontWeight: 800,
-                            color: "#1e293b",
+                            color: brandDark,
                             mb: { xs: 1, md: 2 },
                             fontSize: { 
                               xs: "1.1rem", 
@@ -469,8 +472,8 @@ const Page = () => {
                   p: { xs: 3, sm: 4, md: 5 },
                   borderRadius: { xs: 3, md: 4 },
                   background:
-                    "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
-                  border: "1px solid #cbd5e1",
+                    `linear-gradient(135deg, ${brandLight} 0%, #e2e8f0 100%)`,
+                  border: `1px solid ${brandBorder}`,
                   mb: { xs: 3, md: 5 },
                 }}
               >
@@ -479,7 +482,7 @@ const Page = () => {
                   gutterBottom
                   sx={{ 
                     fontWeight: 800, 
-                    color: "#1e293b", 
+                    color: brandDark, 
                     mb: { xs: 2, md: 4 },
                     fontSize: { xs: "1.3rem", sm: "1.5rem", md: "2rem" },
                     textAlign: { xs: 'center', md: 'left' }
@@ -499,9 +502,9 @@ const Page = () => {
                       cursor: "pointer",
                       transition: "all 0.3s ease",
                       backgroundColor: "white",
-                      border: "1px solid #e2e8f0",
+                      border: `1px solid ${brandBorder}`,
                       "&:hover": {
-                        backgroundColor: `${milestone.color}10`,
+                        backgroundColor: alpha(milestone.color, 0.05),
                         borderColor: milestone.color,
                         transform: { xs: "scale(1.02)", md: "translateX(8px)" },
                         "& .nav-avatar": {
@@ -525,7 +528,7 @@ const Page = () => {
                         variant="body1"
                         sx={{ 
                           fontWeight: 700, 
-                          color: "#1e293b",
+                          color: brandDark,
                           fontSize: { xs: "0.9rem", md: "1rem" }
                         }}
                       >
@@ -551,8 +554,8 @@ const Page = () => {
                   p: { xs: 3, sm: 4, md: 5 },
                   borderRadius: { xs: 3, md: 4 },
                   background:
-                    "linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%)",
-                  border: "1px solid #e9d5ff",
+                    `linear-gradient(135deg, #fff 0%, ${alpha(brandPrimary, 0.05)} 100%)`,
+                  border: `1px solid ${alpha(brandPrimary, 0.1)}`,
                 }}
               >
                 <Typography
@@ -560,7 +563,7 @@ const Page = () => {
                   gutterBottom
                   sx={{ 
                     fontWeight: 800, 
-                    color: "#1e293b", 
+                    color: brandDark, 
                     mb: { xs: 2, md: 4 },
                     fontSize: { xs: "1.3rem", sm: "1.5rem", md: "2rem" },
                     textAlign: { xs: 'center', md: 'left' }
@@ -592,7 +595,7 @@ const Page = () => {
                         variant="h6"
                         sx={{ 
                           fontWeight: 700, 
-                          color: "#1e293b",
+                          color: brandDark,
                           fontSize: { xs: "1rem", md: "1.25rem" }
                         }}
                       >
@@ -622,7 +625,7 @@ const Page = () => {
           sx={{
             mt: { xs: 6, md: 12 },
             background:
-              "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)",
+              `linear-gradient(135deg, #0f172a 0%, ${brandDark} 50%, #334155 100%)`,
             color: "white",
             borderRadius: { xs: 4, md: 6 },
             overflow: "hidden",
@@ -701,7 +704,7 @@ const Page = () => {
                 endIcon={<ArrowForward />}
                 sx={{
                   backgroundColor: "white",
-                  color: "#0f172a",
+                  color: brandDark,
                   px: { xs: 4, md: 6 },
                   py: { xs: 1.5, md: 2 },
                   borderRadius: 4,

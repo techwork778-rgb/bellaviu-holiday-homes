@@ -1,246 +1,3 @@
-// "use client";
-// import React from "react";
-// import {
-//   Box,
-//   Grid,
-//   Button,
-//   Accordion,
-//   AccordionSummary,
-//   Typography,
-//   AccordionDetails,
-//   TextField,
-//   FormControl,
-//   InputLabel,
-//   Select,
-//   MenuItem,
-//   Snackbar,
-//   Alert,
-// } from "@mui/material";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import "./career.css";
-// import PhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
-// function page() {
-//   // const [position, setPosition] = React.useState("");
-//   const [success, setSuccess] = React.useState(false);
-
-//   const formik = useFormik({
-//     initialValues: {
-//       name: "",
-//       email: "",
-//       phone: "",
-//       position: "",
-//       resume: null,
-//     },
-//     validationSchema: Yup.object({
-//       name: Yup.string().required("Name is required"),
-//       email: Yup.string()
-//         .email("Invalid email address")
-//         .required("Email is required"),
-//       phone: Yup.string().required("Phone number is required"),
-//       position: Yup.string().required("Please select a position"),
-//       resume: Yup.mixed().required("Resume is required"),
-//     }),
-//    // Update the onSubmit function inside your formik setup
-// onSubmit: async (values, { resetForm }) => {
-//   const formData = new FormData();
-//   formData.append("name", values.name);
-//   formData.append("email", values.email);
-//   formData.append("phone", values.phone);
-//   formData.append("position", values.position);
-//   formData.append("resume", values.resume);  // Ensure the resume is a file object
-
-//   try {
-//     const response = await fetch("/api/career", {
-//       method: "POST",
-//       body: formData,
-//     });
-
-//     if (response.ok) {
-//       setSuccess(true);  // Show success Snackbar
-//       resetForm();
-//       formik.setFieldValue("phone", "");  // Clear phone input
-//     } else {
-//       console.error("Error submitting form");
-//     }
-//   } catch (error) {
-//     console.error("Error submitting form:", error);
-//   }
-// }
-
-//   });
-
-//   // const handleChange = (event) => {
-//   //   setPosition(event.target.value);
-//   // };
-//   return (
-//     <>
-       
-//       <Box className="career-container">
-//       <h1 className="section-title">Careers</h1>
-//         <Grid container spacing={3} className="career-grid">
-//           <Grid item xs={12} sm={6}>
-//             <div className="career-item">
-//               <h3>Send Your Resume Including Your Employment Experience.</h3>
-//               <p>
-//                 you can reach us through filling out the form or send your
-//                 resume to our email – reservation@bellaviuholidayhomes.com.
-//               </p>
-//               <h4>Current Opening</h4>
-//               <Accordion>
-//                 <AccordionSummary
-//                   expandIcon={<ExpandMoreIcon />}
-//                   aria-controls="panel1-content"
-//                   id="panel1-header"
-//                 >
-//                   <Typography component="span">Sales & Leasing Consultant</Typography>
-//                 </AccordionSummary>
-//                 <AccordionDetails>
-//                 To join our team, we're seeking for a passionate and experienced sales and leasing consultant.
-//                 </AccordionDetails>
-//               </Accordion>
-//             </div>
-//           </Grid>
-//           <Grid
-//             item
-//             xs={12}
-//             sm={6}
-//             container
-//             direction="column"
-//             alignItems="center"
-//             spacing={2}
-//           >
-//             <div className="career-item2">
-//               <h3>Apply For A Job</h3>
-//               <p>
-//                 Submit this form and an HR representative will be in touch to
-//                 discuss your application.
-//               </p>
-//               <form onSubmit={formik.handleSubmit}>
-//                 <TextField
-//                   id="name"
-//                   name="name"
-//                   label="Your Name"
-//                   variant="standard"
-//                   fullWidth
-//                   margin="normal"
-//                   value={formik.values.name}
-//                   onChange={formik.handleChange}
-//                   onBlur={formik.handleBlur}
-//                   error={formik.touched.name && Boolean(formik.errors.name)}
-//                   helperText={formik.touched.name && formik.errors.name}
-//                 />
-//                 <TextField
-//                   id="email"
-//                   name="email"
-//                   label="Your Email"
-//                   variant="standard"
-//                   fullWidth
-//                   margin="normal"
-//                   value={formik.values.email}
-//                   onChange={formik.handleChange}
-//                   onBlur={formik.handleBlur}
-//                   error={formik.touched.email && Boolean(formik.errors.email)}
-//                   helperText={formik.touched.email && formik.errors.email}
-//                 />
-//                 <PhoneInput
-//                   country={"in"}
-//                   value={formik.values.phone}
-//                   onChange={(value) => formik.setFieldValue("phone", value)}
-//                   inputStyle={{
-//                     width: "100%",
-//                     height: "40px",
-//                     border: "none",
-//                     borderBottom: "1px solid #ccc",
-//                     borderRadius: "0",
-//                     boxShadow: "none",
-//                   }}
-//                   containerStyle={{
-//                     marginTop: "16px",
-//                   }}
-//                   buttonStyle={{
-//                     border: "none",
-//                     borderBottom: "1px solid #ccc",
-//                     borderRadius: "0",
-//                   }}
-//                 />
-//                  {formik.touched.phone && formik.errors.phone && (
-//                   <div style={{ color: "red" }}>{formik.errors.phone}</div>
-//                 )}
-//                 <TextField
-//                   id="resume"
-//                   name="resume"
-//                   label="Upload Resume"
-//                   variant="standard"
-//                   type="file"
-//                   InputLabelProps={{ shrink: true }}
-//                   inputProps={{ accept: ".pdf,.doc,.docx" }}
-//                   fullWidth
-//                   margin="normal"
-//                   onChange={(event) =>
-//                     formik.setFieldValue("resume", event.currentTarget.files[0])
-//                   }
-//                   onBlur={formik.handleBlur}
-//                   error={formik.touched.resume && Boolean(formik.errors.resume)}
-//                   helperText={formik.touched.resume && formik.errors.resume}
-//                 />
-//                 <FormControl
-//                   variant="standard"
-//                   fullWidth
-//                   error={
-//                     formik.touched.position && Boolean(formik.errors.position)
-//                   }
-//                 >
-//                   <InputLabel>Choose position applying for</InputLabel>
-//                   <Select
-//                     id="position"
-//                     name="position"
-//                     value={formik.values.position}
-//                     onChange={formik.handleChange}
-//                     onBlur={formik.handleBlur}
-//                     fullWidth
-//                     style={{
-//                       fontFamily: "inherit",
-//                       fontSize: "1rem",
-//                     }}
-//                   >
-//                     <MenuItem value="Sales & Leasing Consultant">
-//                       Sales & Leasing Consultant
-//                     </MenuItem>
-//                     <MenuItem value="Marketing Specialist">
-//                       Marketing Specialist
-//                     </MenuItem>
-//                     <MenuItem value="HR Manager">HR Manager</MenuItem>
-//                   </Select>
-//                 </FormControl>
-//                 {formik.touched.position && formik.errors.position && (
-//                   <div style={{ color: "red" }}>{formik.errors.position}</div>
-//                 )}
-//                 <button class="hero-duo-button  my-2" type="submit">
-//                   {" "}
-//                   Apply Now{" "}
-//                 </button>
-//               </form>
-//             </div>
-//           </Grid>
-//         </Grid>
-//       </Box>
-//       <Snackbar
-//         open={success}
-//         autoHideDuration={6000}
-//         onClose={() => setSuccess(false)}
-//       >
-//         <Alert onClose={() => setSuccess(false)} severity="success">
-//           Property submitted successfully!
-//         </Alert>
-//       </Snackbar>
-//     </>
-//   );
-// }
-
-// export default page;
 "use client";
 import React, { useState } from "react";
 import {
@@ -255,8 +12,15 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Container,
+  Paper,
+  Stack,
+  Button,
+  CircularProgress,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import "./career.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -266,69 +30,39 @@ import toast, { Toaster } from "react-hot-toast";
 
 function Page() {
   const [loading, setLoading] = useState(false);
+
   const jobDetails = [
-    {
-      title: "Business Development Manager",
-      description: "To join our team, we're seeking for a passionate and experienced development manager.",
-    },
-    {
-      title: "Guest Relation Executive",
-      description: "Responsible for ensuring excellent guest experiences and addressing their needs effectively.",
-    },
-    {
-      title: "Property Onboarding Manager",
-      description: "Oversee the onboarding process for new properties and ensure a seamless experience.",
-    },
-    {
-      title: "Sales Manager",
-      description: "Lead and motivate the sales team to achieve targets and build strong client relationships.",
-    },
-    {
-      title: "Reservation Manager",
-      description: "Manage the reservation process, ensuring efficiency and client satisfaction.",
-    },
+    { title: "Business Development Manager", description: "Seeking a passionate manager to drive growth and property acquisitions in the Dubai market." },
+    { title: "Guest Relation Executive", description: "Ensure five-star guest experiences, managing check-ins and on-site requirements with excellence." },
+    { title: "Property Onboarding Manager", description: "Streamline the transition of new properties into our luxury portfolio with meticulous attention to detail." },
+    { title: "Sales Manager", description: "Lead our high-performing sales team to exceed targets and expand our global client base." },
+    { title: "Reservation Manager", description: "Oversee the booking ecosystem, optimizing occupancy and maintaining premium service standards." },
   ];
+
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      position: "",
-      resume: null,
-    },
+    initialValues: { name: "", email: "", phone: "", position: "", resume: null },
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
+      name: Yup.string().required("Full name is required"),
+      email: Yup.string().email("Invalid email address").required("Email is required"),
       phone: Yup.string().required("Phone number is required"),
       position: Yup.string().required("Please select a position"),
-      resume: Yup.mixed().required("Resume is required"),
+      resume: Yup.mixed().required("Please upload your resume"),
     }),
     onSubmit: async (values, { resetForm }) => {
       const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("phone", values.phone);
-      formData.append("position", values.position);
-      formData.append("resume", values.resume);
+      Object.keys(values).forEach(key => formData.append(key, values[key]));
 
       setLoading(true);
       try {
-        const response = await fetch("/api/career", {
-          method: "POST",
-          body: formData,
-        });
-
+        const response = await fetch("/api/career", { method: "POST", body: formData });
         if (response.ok) {
           toast.success("Application submitted successfully!");
           resetForm();
         } else {
-          toast.error("Failed to submit application. Please try again.");
+          toast.error("Submission failed. Please try again.");
         }
       } catch (error) {
-        console.error("Error submitting form:", error);
-        toast.error("Something went wrong. Please try again later.");
+        toast.error("An error occurred. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -336,169 +70,129 @@ function Page() {
   });
 
   return (
-    <>
-      <Box className="career-container">
-        <h1 className="section-head">Careers</h1>
-        <Grid container spacing={3} className="career-grid">
-          <Grid item xs={12} sm={6}>
-            <div className="career-item">
-              <h3>Send Your Resume Including Your Employment Experience.</h3>
-              <p>
-                You can reach us through filling out the form or send your
-                resume to our email – reservation@bellaviuholidayhomes.com.
-              </p>
-              <h4>Current Opening</h4>
+    <Box className="career-page-wrapper">
+      <Toaster position="top-center" />
+      
+      {/* 1️⃣ HERO SECTION */}
+      <Box className="career-hero">
+        <Container maxWidth="md">
+          <Typography variant="h2" className="hero-title">Join Our Team</Typography>
+          {/* <Typography variant="body1" className="hero-subtitle">
+            Experience the pinnacle of hospitality. We are looking for extraordinary talent 
+            to redefine luxury holiday homes in Dubai.
+          </Typography> */}
+          <Box className="accent-line" />
+        </Container>
+      </Box>
+
+      <Container maxWidth="lg" sx={{ pb: 10 }}>
+        <Grid container spacing={6}>
+          {/* 2️⃣ LEFT SIDE: JOB OPENINGS */}
+          <Grid item xs={12} md={6}>
+            <Box className="section-header">
+              <Typography variant="h4" className="section-title">Current Openings</Typography>
+              <Typography variant="body2" className="section-desc">
+                Explore our available roles or send your resume to <span className="brand-link">reservation@bellaviuholidayhomes.com</span>
+              </Typography>
+            </Box>
+            
+            <Stack spacing={2} sx={{ mt: 4 }}>
               {jobDetails.map((job, index) => (
-        <Accordion key={index}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`panel${index}-content`}
-            id={`panel${index}-header`}
-          >
-            <Typography component="span">{job.title}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{job.description}</Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
-            </div>
+                <Accordion key={index} className="custom-accordion">
+                  <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9c6c69' }} />}>
+                    <WorkOutlineIcon sx={{ mr: 2, fontSize: 20, color: '#9c6c69' }} />
+                    <Typography className="job-title-text">{job.title}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography className="job-description">{job.description}</Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Stack>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            container
-            direction="column"
-            alignItems="center"
-          >
-            <div className="career-item2">
-              <h3>Apply For A Job</h3>
-              <p>
-                Submit this form and an HR representative will be in touch to
-                discuss your application.
-              </p>
+
+          {/* 3️⃣ RIGHT SIDE: APPLICATION FORM */}
+          <Grid item xs={12} md={6}>
+            <Paper className="form-card" elevation={0}>
+              <Typography variant="h5" className="form-title">Apply For A Job</Typography>
+              <Typography variant="body2" className="form-subtitle">Submit your details and our HR team will review your profile.</Typography>
+              
               <form onSubmit={formik.handleSubmit}>
-                <TextField
-                  id="name"
-                  name="name"
-                  label="Your Name"
-                  variant="standard"
-                  fullWidth
-                  margin="normal"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={formik.touched.name && Boolean(formik.errors.name)}
-                  helperText={formik.touched.name && formik.errors.name}
-                />
-                <TextField
-                  id="email"
-                  name="email"
-                  label="Your Email"
-                  variant="standard"
-                  fullWidth
-                  margin="normal"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                />
-                <PhoneInput
-                  country={"ae"}
-                  value={formik.values.phone}
-                  onChange={(value) => formik.setFieldValue("phone", value)}
-                  inputStyle={{
-                    width: "100%",
-                    height: "40px",
-                    border: "none",
-                    borderBottom: "1px solid #ccc",
-                    borderRadius: "0",
-                    boxShadow: "none",
-                  }}
-                  containerStyle={{
-                    marginTop: "16px",
-                  }}
-                  buttonStyle={{
-                    border: "none",
-                    borderBottom: "1px solid #ccc",
-                    borderRadius: "0",
-                  }}
-                />
-                {formik.touched.phone && formik.errors.phone && (
-                  <div style={{ color: "red" }}>{formik.errors.phone}</div>
-                )}
-                <TextField
-                  id="resume"
-                  name="resume"
-                  label="Upload Resume"
-                  variant="standard"
-                  type="file"
-                  InputLabelProps={{ shrink: true }}
-                  inputProps={{ accept: ".pdf,.doc,.docx" }}
-                  fullWidth
-                  margin="normal"
-                  onChange={(event) =>
-                    formik.setFieldValue("resume", event.currentTarget.files[0])
-                  }
-                  onBlur={formik.handleBlur}
-                  error={formik.touched.resume && Boolean(formik.errors.resume)}
-                  helperText={formik.touched.resume && formik.errors.resume}
-                />
-                <FormControl
-                  variant="standard"
-                  fullWidth
-                  error={
-                    formik.touched.position && Boolean(formik.errors.position)
-                  }
-                >
-                  <InputLabel>Choose position applying for</InputLabel>
-                  <Select
-                    id="position"
-                    name="position"
-                    value={formik.values.position}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    fullWidth
-                    style={{
-                      fontFamily: "inherit",
-                      fontSize: "1rem",
-                    }}
+                <Stack spacing={3} sx={{ mt: 3 }}>
+                  <TextField
+                    fullWidth label="Full Name" name="name" variant="outlined"
+                    value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
+                    className="custom-input"
+                  />
+
+                  <TextField
+                    fullWidth label="Email Address" name="email" variant="outlined"
+                    value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                    className="custom-input"
+                  />
+
+                  <Box>
+                    <PhoneInput
+                      country={"ae"}
+                      value={formik.values.phone}
+                      onChange={(value) => formik.setFieldValue("phone", value)}
+                      containerClass="custom-phone-container"
+                      inputClass="custom-phone-input"
+                    />
+                    {formik.touched.phone && formik.errors.phone && (
+                      <Typography className="error-text">{formik.errors.phone}</Typography>
+                    )}
+                  </Box>
+
+                  <FormControl fullWidth variant="outlined" className="custom-input" error={formik.touched.position && Boolean(formik.errors.position)}>
+                    <InputLabel>Position Applying For</InputLabel>
+                    <Select
+                      name="position" label="Position Applying For"
+                      value={formik.values.position} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                    >
+                      {jobDetails.map((job, i) => (
+                        <MenuItem key={i} value={job.title}>{job.title}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <Box className="file-upload-wrapper">
+                    <Button
+                      variant="outlined" component="label" fullWidth
+                      startIcon={<CloudUploadIcon />} className="file-btn"
+                    >
+                      {formik.values.resume ? formik.values.resume.name : "Upload Resume (PDF/DOC)"}
+                      <input
+                        type="file" hidden accept=".pdf,.doc,.docx"
+                        onChange={(event) => formik.setFieldValue("resume", event.currentTarget.files[0])}
+                      />
+                    </Button>
+                    {formik.touched.resume && formik.errors.resume && (
+                      <Typography className="error-text">{formik.errors.resume}</Typography>
+                    )}
+                  </Box>
+
+                  <Button
+                    type="submit" variant="contained" className="submit-btn"
+                    disabled={loading}
                   >
-                    <MenuItem value="Business Development Manager ">
-                    Business Development Manager 
-                    </MenuItem>
-                    <MenuItem value="Guest Relation Executive">
-                    Guest Relation Executive
-                    </MenuItem>
-                    <MenuItem value="Property Onboarding Manager">Property Onboarding Manager</MenuItem>
-                    <MenuItem value="Sales Manager">Sales Manager</MenuItem>
-                    <MenuItem value="Sales Manager">Reservation Manager</MenuItem>
-                  </Select>
-                </FormControl>
-                {formik.touched.position && formik.errors.position && (
-                  <div style={{ color: "red" }}>{formik.errors.position}</div>
-                )}
-                <button className="hero-duo-button my-2" type="submit">
-                  {loading ? "Submitting..." : "Apply Now"}
-                </button>
+                    {loading ? <CircularProgress size={24} color="inherit" /> : "Apply Now"}
+                  </Button>
+                  
+                  <Typography className="helper-footer">
+                    We will contact shortlisted candidates within 48 hours.
+                  </Typography>
+                </Stack>
               </form>
-            </div>
+            </Paper>
           </Grid>
         </Grid>
-      </Box>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-        toastOptions={{
-          duration: 5000,
-          style: {
-            fontSize: "16px",
-          },
-        }}
-      />
-    </>
+      </Container>
+    </Box>
   );
 }
 

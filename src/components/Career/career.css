@@ -1,64 +1,181 @@
-.career-container{
-    margin-top: 50px !important;
-}
-.career-grid{
-    padding: 20px !important;
+/* Container & Layout */
+.career-page-wrapper {
+  background-color: #f8fafc;
+  min-height: 100vh;
 }
 
-.career-item2{
-background-color: #FAFAFA;
+/* Hero Section */
+.career-hero {
+  padding: 100px 0 60px;
+  text-align: center;
+  background: white;
+  margin-bottom: 60px;
+}
+
+.hero-title {
+  font-family: "Urbanist", sans-serif !important;
+  font-weight: 800;
+  color: #1e293b;
+  font-size: 3.5rem !important;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background-color: #9c6c69;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Section Styling */
+.section-title {
+  color: #1e293b;
+  font-weight: 700;
+  margin-bottom: 10px !important;
+}
+
+.section-desc {
+  color: #64748b;
+}
+
+.brand-link {
+  color: #9c6c69;
+  font-weight: 600;
+}
+
+/* Accordion Styling */
+.custom-accordion {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  border: 1px solid #e2e8f0 !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.custom-accordion:hover {
+  border-color: #9c6c69 !important;
+  transform: translateY(-2px);
+}
+
+.custom-accordion::before {
+  display: none;
+}
+
+.job-title-text {
+  font-weight: 600 !important;
+  color: #1e293b;
+}
+
+.job-description {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Form Card */
+.form-card {
+  padding: 40px;
+  border-radius: 20px !important;
+  background: #ffffff;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+}
+
+.form-title {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.form-subtitle {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+/* Input Overrides */
+.custom-input .MuiOutlinedInput-root {
+  border-radius: 10px;
+}
+
+.custom-input .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #9c6c69 !important;
+}
+
+.custom-input .MuiInputLabel-root.Mui-focused {
+  color: #9c6c69 !important;
+}
+
+/* Phone Input Customization */
+.custom-phone-container {
+  width: 100% !important;
+}
+
+.custom-phone-input {
+  width: 100% !important;
+  height: 56px !important;
+  border-radius: 10px !important;
+  border: 1px solid #ccc !important;
+  font-family: inherit !important;
+}
+
+.custom-phone-input:focus {
+  border: 2px solid #9c6c69 !important;
+  box-shadow: none !important;
+}
+
+/* File Upload */
+.file-btn {
+  padding: 12px !important;
+  border-radius: 10px !important;
+  border: 1px dashed #9c6c69 !important;
+  color: #9c6c69 !important;
+  text-transform: none !important;
+}
+
+/* Error Text */
+.error-text {
+  color: #d32f2f;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  margin-left: 14px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: #9c6c69 !important;
+  padding: 14px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 14px rgba(156, 108, 105, 0.4) !important;
+  transition: 0.3s ease !important;
+}
+
+.submit-btn:hover {
+  background-color: #7d5654 !important;
+  transform: scale(1.02);
+}
+
+.helper-footer {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+/* Responsive fixes */
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.2rem !important;
+  }
+  .form-card {
     padding: 20px;
+  }
 }
-.career-item{
-        padding: 20px;
-}
-.section-head{
-font-size: var(--extra-large-font-size);
-font-weight: 700;
-text-transform: capitalize;
-text-align: center;
-line-height: 1.1em;
-color: #000000;
-font-family: "Urbanist", sans-serif !important;
-}
-.hero-duo-button {
-    padding: 5px 5px;
-    border: 2px solid #9c6c69;
-    position: relative;
-    overflow: hidden;
-    background-color: transparent;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 16px;
-    transition: .3s;
-    z-index: 1;
-    font-family: inherit;
-    color: #9c6c69;
-  }
-  
-  .hero-duo-button::before {
-    content: '';
-    width: 0;
-    height: 400%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    background: #9c6c69;
-    transition: .5s ease;
-    display: block;
-    z-index: -1;
-  }
-  
-  .hero-duo-button:hover::before {
-    width: 105%;
-  }
-  
-  .hero-duo-button:hover {
-    color: #ffffff;
-  }
-  .hero-duo-button-filled{
-    background-color: #9c6c69;
-    color: rgb(255, 255, 255);
-  
-  }

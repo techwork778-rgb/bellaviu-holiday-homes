@@ -1,10 +1,10 @@
 {
   "pages": {
-    "/page": [
+    "/(pages)/our-services/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/(pages)/our-services/page.css",
+      "static/chunks/app/(pages)/our-services/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -22,10 +22,33 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/(pages)/how-to-book-as-a-guest/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(pages)/how-to-book-as-a-guest/page.css",
+      "static/chunks/app/(pages)/how-to-book-as-a-guest/page.js"
+    ],
+    "/(pages)/contact-us/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(pages)/contact-us/page.css",
+      "static/chunks/app/(pages)/contact-us/page.js"
+    ],
+    "/(pages)/contact-us/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(pages)/contact-us/layout.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ]
   }
 }

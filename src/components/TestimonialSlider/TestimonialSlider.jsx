@@ -1,128 +1,138 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Card, Container } from 'react-bootstrap';
-import { Typography, Rating, Avatar, Box, IconButton } from '@mui/material';
+import { Container } from 'react-bootstrap';
+import { Typography, Rating, Avatar, Box, useTheme, useMediaQuery } from '@mui/material';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './TestimonialSlider.css';
 
 const TestimonialSlider = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
     const testimonials = [
         {
             rating: 5,
             review: "Bellaviu gave us everything we dreamed of and more. The space, comfort, and attention to detail made our vacation unforgettable. It felt like a home, but better!",
             name: "Sarah M.",
-            location: "UK",
-            avatar: "/api/placeholder/48/48"
+            location: "United Kingdom",
+            avatar: "/api/placeholder/64/64"
         },
         {
             rating: 5,
             review: "Our Bellaviu stay was perfect for our family of five. The kids loved the space, and we loved the privacy and local feel. It was way better than any hotel we've stayed in before.",
             name: "Ahmed R.",
             location: "Saudi Arabia",
-            avatar: "/api/placeholder/48/48"
+            avatar: "/api/placeholder/64/64"
         },
         {
             rating: 5,
             review: "I felt completely at ease knowing we were in a gated community with 24/7 security. The home was beautifully designed, and every detail was flawless.",
             name: "Laura T.",
             location: "USA",
-            avatar: "/api/placeholder/48/48"
+            avatar: "/api/placeholder/64/64"
         },
         {
             rating: 5,
             review: "For the price we paid, the experience was incredible. Spacious, clean, and luxurious – everything was beyond our expectations. We’ll be back!",
             name: "Priya L.",
             location: "India",
-            avatar: "/api/placeholder/48/48"
+            avatar: "/api/placeholder/64/64"
         }
     ];
 
     const CustomPrevArrow = ({ onClick }) => (
-        <IconButton onClick={onClick} className="bv-testimonial-arrow bv-testimonial-arrow--prev">
-            <ChevronLeft size={24} />
-        </IconButton>
+        <button onClick={onClick} className="bv-nav-arrow bv-prev" aria-label="Previous">
+            <ChevronLeft size={20} strokeWidth={2} />
+        </button>
     );
 
     const CustomNextArrow = ({ onClick }) => (
-        <IconButton onClick={onClick} className="bv-testimonial-arrow bv-testimonial-arrow--next">
-            <ChevronRight size={24} />
-        </IconButton>
+        <button onClick={onClick} className="bv-nav-arrow bv-next" aria-label="Next">
+            <ChevronRight size={20} strokeWidth={2} />
+        </button>
     );
 
     const settings = {
         dots: true,
         infinite: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
         speed: 800,
         slidesToShow: 2,
         slidesToScroll: 1,
         prevArrow: <CustomPrevArrow />,
         nextArrow: <CustomNextArrow />,
-        dotsClass: "slick-dots bv-testimonial-dots",
+        dotsClass: "slick-dots bv-custom-dots",
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false, // Cleaner UX for mobile touch
                 }
             }
         ]
     };
 
     return (
-        <section className="bv-testimonial-wrapper">
-            <Container>
-                <Box className="bv-testimonial-header">
-                    <Typography variant="overline" className="bv-testimonial-badge">
+        <section className="bv-testimonial-section">
+            <Container className="bv-slider-outer-container">
+                <Box className="bv-section-header">
+                    <Typography component="span" className="bv-subtitle">
                         Guest Experiences
                     </Typography>
-                    <Typography variant="h2" className="bv-testimonial-title">
-                        What Our Guests <span className="bv-testimonial-italic">Say</span>
+                    <Typography variant="h2" className="bv-main-title">
+                        What Our Guests <span className="bv-accent-text">Say</span>
                     </Typography>
                 </Box>
 
-                <Slider {...settings} className="bv-testimonial-slider">
-                    {testimonials.map((testimonial, index) => (
-                        <div key={index} className="bv-testimonial-slide">
-                            <Card className="bv-testimonial-card">
-                                <Box className="bv-testimonial-quote-icon">
-                                    <Quote size={40} fill="currentColor" opacity={0.1} />
-                                </Box>
-                                <Card.Body className="bv-testimonial-body">
-                                    <Rating
-                                        value={testimonial.rating}
-                                        readOnly
-                                        precision={0.5}
-                                        className="bv-testimonial-rating"
-                                    />
-
-                                    <Typography className="bv-testimonial-text">
-                                        "{testimonial.review}"
-                                    </Typography>
-
-                                    <Box className="bv-testimonial-footer">
-                                        <Avatar
-                                            src={testimonial.avatar}
-                                            alt={testimonial.name}
-                                            className="bv-testimonial-avatar"
+                <Box className="bv-slider-relative-wrapper">
+                    <Slider {...settings}>
+                        {testimonials.map((item, index) => (
+                            <div key={index} className="bv-slide-item">
+                                <Box className="bv-luxury-card">
+                                    <Box className="bv-card-upper">
+                                        <Quote className="bv-quote-mark" size={40} strokeWidth={1} />
+                                        <Rating 
+                                            value={item.rating} 
+                                            readOnly 
+                                            className="bv-star-rating"
                                         />
-                                        <Box className="bv-testimonial-meta">
-                                            <Typography className="bv-testimonial-name">
-                                                {testimonial.name}
-                                            </Typography>
-                                            <Typography className="bv-testimonial-location">
-                                                {testimonial.location}
-                                            </Typography>
+                                        <Typography className="bv-review-content">
+                                            "{item.review}"
+                                        </Typography>
+                                    </Box>
+
+                                    <Box className="bv-card-lower">
+                                        <Box className="bv-user-info">
+                                            <Avatar 
+                                                src={item.avatar} 
+                                                className="bv-author-avatar"
+                                            />
+                                            <Box>
+                                                <Typography className="bv-author-name">
+                                                    {item.name}
+                                                </Typography>
+                                                <Typography className="bv-author-loc">
+                                                    {item.location}
+                                                </Typography>
+                                            </Box>
                                         </Box>
                                     </Box>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    ))}
-                </Slider>
+                                </Box>
+                            </div>
+                        ))}
+                    </Slider>
+                </Box>
             </Container>
         </section>
     );
