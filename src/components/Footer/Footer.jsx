@@ -26,7 +26,7 @@ const Footer = () => {
         <div className="row pb-md-3">
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0 text-center text-md-start">
             <Link href="https://deenpropertiesuae.com/" passHref>
-            <Image src="/deenproperty.gif" alt="Logo" width={280} height={120} />
+            <Image src="/deen-new-logo.png" alt="Logo" width={240} height={90} />
             </Link>
           </div>
           <div

@@ -1,8 +1,5 @@
 {
-  "/(pages)/how-to-book-as-a-guest/page": "app/(pages)/how-to-book-as-a-guest/page.js",
-  "/(pages)/our-services/page": "app/(pages)/our-services/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/page": "app/page.js",
-  "/(pages)/contact-us/page": "app/(pages)/contact-us/page.js"
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js"
 }
